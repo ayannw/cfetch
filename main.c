@@ -9,6 +9,7 @@
 #include <string.h>
 
 char * getUptime();
+char * getMem();
 
 int main() {
   typedef struct {
@@ -16,6 +17,7 @@ int main() {
     char * host;
     char * uptime;
     char * user;
+    char * memory;
   } Info;
   struct utsname name;
   char hostname[HOST_NAME_MAX + 1];
@@ -41,12 +43,14 @@ int main() {
   info.host = hostname;
   info.uptime = getUptime();
   info.user = getlogin();
+  info.memory = getMem();
 
-  printf("%s", bold);
-  printf("%sOS%s:     \t%s\n", green, white, info.os);
-  printf("%sHost%s:   \t%s\n", blue, white, info.host);
-  printf("%sUptime%s: \t%s\n", yellow, white, info.uptime);
-  printf("%sUser%s:   \t%s\n", red, white, info.user);
+  printf("%s\n", bold);
+  printf(" │ %sOS%s:     \t%s\n", green, white, info.os);
+  printf(" │ %sHost%s:   \t%s\n", blue, white, info.host);
+  printf(" │ %sUptime%s: \t%s\n", yellow, white, info.uptime);
+  printf(" │ %sUser%s:   \t%s\n", red, white, info.user);
+  printf(" │ %sMemory%s: \t%s\n", magenta, white, info.memory);
 
   return 0;
 }
@@ -64,6 +68,21 @@ char * getUptime() {
      si.uptime / day, (si.uptime % day) / hour, 
      (si.uptime % hour) / minute, si.uptime % minute);
 
+
+  return res;
+}
+
+char * getMem() {
+  struct sysinfo si;
+  int totalmem, usedmem;
+  static char res[20];
+
+  sysinfo(&si);
+
+  totalmem = si.totalram / 1048576;
+  usedmem = totalmem - (si.freeram / 1048576);
+
+  sprintf(res, "%d / %d MiB", usedmem, totalmem);
 
   return res;
 }
