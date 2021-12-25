@@ -20,17 +20,17 @@ int main() {
   struct utsname name;
   char hostname[HOST_NAME_MAX + 1];
 
-  const char * red = "\x1B[31m";
-  const char * green = "\x1B[32m";
-  const char * blue = "\x1B[34m";
-  const char * magenta = "\x1B[35m";
-  const char * cyan = "\x1B[36m";
-  const char * yellow = "\x1B[33m";
-  const char * white = "\x1B[37m";
+  const char * red = "\033[0;31m";
+  const char * green = "\033[0;32m";
+  const char * blue = "\033[0;34m";
+  const char * magenta = "\033[0;35m";
+  const char * cyan = "\033[0;36m";
+  const char * yellow = "\033[0;33m";
+  const char * white = "\033[0;37m";
 
-  const char * normal = "\x1B[0m";
+  const char * normal = "\033[0m";
 
-  const char * bold = "\x1B[1m";
+  const char * bold = "\033[1m";
 
   if(uname(&name)) exit(-1);
   gethostname(hostname, HOST_NAME_MAX + 1);
