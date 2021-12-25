@@ -46,11 +46,11 @@ int main() {
   info.memory = getMem();
 
   printf("%s\n", bold);
-  printf(" │ %sOS%s:     \t%s\n", green, white, info.os);
-  printf(" │ %sHost%s:   \t%s\n", blue, white, info.host);
-  printf(" │ %sUptime%s: \t%s\n", yellow, white, info.uptime);
-  printf(" │ %sUser%s:   \t%s\n", red, white, info.user);
-  printf(" │ %sMemory%s: \t%s\n", magenta, white, info.memory);
+  printf(" ████████   │ %sOS%s:     \t%s\n", green, white, info.os);
+  printf(" ██      ██ │ %sHost%s:   \t%s\n", blue, white, info.host);
+  printf(" ██      ██ │ %sUser%s: \t%s\n", yellow, white, info.user);
+  printf(" ██████████ │ %sUptime%s: \t%s\n", red, white, info.uptime);
+  printf(" ██      ██ │ %sMemory%s: \t%s\n", magenta, white, info.memory);
 
   return 0;
 }
