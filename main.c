@@ -20,6 +20,18 @@ int main() {
   struct utsname name;
   char hostname[HOST_NAME_MAX + 1];
 
+  const char * red = "\x1B[31m";
+  const char * green = "\x1B[32m";
+  const char * blue = "\x1B[34m";
+  const char * magenta = "\x1B[35m";
+  const char * cyan = "\x1B[36m";
+  const char * yellow = "\x1B[33m";
+  const char * white = "\x1B[37m";
+
+  const char * normal = "\x1B[0m";
+
+  const char * bold = "\x1B[1m";
+
   if(uname(&name)) exit(-1);
   gethostname(hostname, HOST_NAME_MAX + 1);
 
@@ -30,10 +42,11 @@ int main() {
   info.uptime = getUptime();
   info.user = getlogin();
 
-  printf("OS:     \t%s\n", info.os);
-  printf("Host:   \t%s\n", info.host);
-  printf("Uptime: \t%s\n", info.uptime);
-  printf("User:   \t%s\n", info.user);
+  printf("%s", bold);
+  printf("%sOS%s:     \t%s\n", green, white, info.os);
+  printf("%sHost%s:   \t%s\n", blue, white, info.host);
+  printf("%sUptime%s: \t%s\n", yellow, white, info.uptime);
+  printf("%sUser%s:   \t%s\n", red, white, info.user);
 
   return 0;
 }
