@@ -10,4 +10,4 @@ gcc src/main.c -o cfetch
 ```
 
 ### ASCII Arts
-Modify the `artfile` variable in `src/main.c` to load ASCII art from `ascii-arts/` folder and rebuild the executable. You can create your own art as well.
+For now, the only way to change the ASCII art is editing the code and recompiling.

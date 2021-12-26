@@ -8,10 +8,18 @@
 #include <time.h>
 #include <string.h>
 
-char * getUptime();
-char * getMem();
+static int fetch();
+static char * getUptime();
+static char * getMem();
 
 int main() {
+
+  fetch();
+
+  return 0;
+}
+
+static int fetch() {
   typedef struct {
     char * os;
     char * host;
@@ -31,7 +39,6 @@ int main() {
   const char * white = "\033[0;37m";
 
   const char * normal = "\033[0m";
-
   const char * bold = "\033[1m";
 
   if(uname(&name)) exit(-1);
@@ -52,10 +59,11 @@ int main() {
   printf(" ██████████ │ %sUptime%s: \t%s\n", red, white, info.uptime);
   printf(" ██      ██ │ %sMemory%s: \t%s\n", magenta, white, info.memory);
 
+
   return 0;
 }
 
-char * getUptime() {
+static char * getUptime() {
   struct sysinfo si;
   const long minute = 60;
   const long hour = minute * 60;
@@ -72,7 +80,7 @@ char * getUptime() {
   return res;
 }
 
-char * getMem() {
+static char * getMem() {
   struct sysinfo si;
   int totalmem, usedmem;
   static char res[20];
